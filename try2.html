@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        .main {
+            display: flex;
+            width: 612px;
+            flex-wrap: wrap;
+        }
+
+        .box1,
+        .box2,
+        .box3,
+        .box4,
+        .box5,
+        .box6 {
+            height: 200px;
+            width: 200px;
+            border: 2px solid white;
+            border-radius: 20px;
+        }
+
+        p {
+            text-align: center;
+            font-size: xx-large;
+            font-weight: 900;
+        }
+        button{
+            margin-top: 50px;
+            margin-left: 260px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="box1" id="box1"></div>
+            <div class="box2" id="box2"></div>
+            <div class="box3" id="box3"></div>
+            <div class="box4" id="box4"></div>
+            <div class="box5" id="box5"></div>
+            <div class="box6" id="box6"></div>
+            <button onclick="finalSubmit()">Submit Button</button>
+        </div>
+        
+        
+    </div>
+    <p id="demo"></p>
+    
+    <br>
+    <br>
+    <br>
+
+
+
+    <script>
+        let box1 = document.querySelector(".box1").style.background;
+        let box2 = document.querySelector(".box2").style.background;
+        let box3 = document.querySelector(".box3").style.background;
+        let box4 = document.querySelector(".box4").style.background;
+        let box5 = document.querySelector(".box5").style.background;
+        let box6 = document.querySelector(".box6").style.background;
+
+        let array = [{
+            1: "red", 2: "yellow", 3: "blue",
+            4: "red", 5: "green", 6: "pink", 7: "PICK RED",
+            8: "red"
+        },
+        {
+            1: "blue", 2: "blue", 3: "red",
+            4: "green", 5: "pink", 6: "yellow", 7: "PICK BLUE",
+            8: "blue"
+        },
+        {
+            1: "yellow", 2: "yellow", 3: "blue",
+            4: "pink", 5: "red", 6: "green", 7: " PICK YELLOW",
+            8: "yellow"
+        },
+        {
+            1: "green", 2: "blue", 3: "green",
+            4: "pink", 5: "red", 6: "yellow", 7: "PICK GREEN",
+            8: "green"
+        },
+        {
+            1: "green", 2: "pink", 3: "yellow",
+            4: "pink", 5: "red", 6: "blue", 7: "PICK PINK",
+            8: "pink"
+        }];
+        let randomobj = array[Math.floor(Math.random() * array.length)];
+        console.log(randomobj);
+         document.querySelector(".box1").style.background = randomobj[1];
+         document.querySelector(".box2").style.background = randomobj[2];
+         document.querySelector(".box3").style.background = randomobj[3];
+         document.querySelector(".box4").style.background = randomobj[4];
+         document.querySelector(".box5").style.background = randomobj[5];
+         document.querySelector(".box6").style.background = randomobj[6];
+        
+
+        function closediv() {
+            document.querySelector(".box1").style.background = "black";
+            document.querySelector(".box2").style.background = "black";
+            document.querySelector(".box3").style.background = "black";
+            document.querySelector(".box4").style.background = "black";
+            document.querySelector(".box5").style.background = "black";
+            document.querySelector(".box6").style.background = "black";
+            document.getElementById("demo").innerHTML = randomobj[7];
+        }
+
+        setTimeout(closediv, 3000);
+
+       
+        let values=[];
+        let counter=0;
+   
+            document.querySelector(".main").addEventListener("click",a)
+            for(let i=0;i<=6;i++){
+                    if(randomobj[8]==randomobj[i]){
+                        console.log(i);
+                        values.push(i);
+                        console.log(values);
+                    }
+                }
+            function a(e){
+                console.log("child clicked");
+                console.log(e.path[0].id);
+                console.log(values);
+                b=(values.map(e=>"box"+e).includes(e.path[0].id));
+                console.log(b);
+              
+            };
+
+        function finalSubmit() {
+            console.log(b);
+            if(b==true){
+                console.log("U R Ryt");
+                document.getElementById("demo").innerHTML=`You are Right`;
+            }
+            else{
+                console.log("U R Wrong");
+                document.getElementById("demo").innerHTML=`You are Wrong`;
+            }
+        }
+  
+
+
+        
+        
+       
+    </script>
+</body>
+
+</html>
